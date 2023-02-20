@@ -47,7 +47,7 @@ public class MyLinkedList<T> implements List<T> {
 
     @Override
     public <T1> T1[] toArray(T1[] a) {
-        a=(T1[]) new Object[size];
+        a = (T1[]) new Object[size];
         int i = 0;
         for (Node<T> n = first; n != null; n = n.next) {
             a[i++] = (T1) n.object;
@@ -254,7 +254,7 @@ public class MyLinkedList<T> implements List<T> {
 
     private int findNode(Object o) {
         int i = -1;
-        for (Node<T> node = first; node != null; node= node.next) {
+        for (Node<T> node = first; node != null; node = node.next) {
             i++;
         }
         return i;
@@ -328,13 +328,19 @@ public class MyLinkedList<T> implements List<T> {
 
         @Override
         public int nextIndex() {
-            return findNode(currentNode.object)+1;
+            if (currentNode != last)
+                return findNode(currentNode.object) + 1;
+            else
+                return findNode(currentNode.object);
 
         }
 
         @Override
         public int previousIndex() {
-            return findNode(currentNode.object)-1;
+            if (currentNode != first)
+                return findNode(currentNode.object) - 1;
+            else
+                return findNode(currentNode.object);
         }
 
         @Override
