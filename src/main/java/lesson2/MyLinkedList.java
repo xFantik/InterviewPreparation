@@ -91,8 +91,12 @@ public class MyLinkedList<T> implements List<T> {
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        System.out.println("не реализовано");
-        return false;
+        for (Node<T> node = first; node != null; node = node.next) {
+            if (!c.contains(node.object)){
+                remove(node.object);
+            }
+        }
+        return true;
     }
 
     @Override
